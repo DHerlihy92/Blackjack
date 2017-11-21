@@ -5,15 +5,17 @@ public class BlackJackDriver {
     public static void main(String[] args) {
 
         String pName;
+        int pBal;
 
         ArrayList<Card> deck = Deck.deckBuilder();
         ArrayList<Card> handArray= new ArrayList<Card>();
         Deck bdeck = new Deck(deck);
         bdeck.display();
-        Deck.shuffle(deck);
+        bdeck.shuffle();
         bdeck.display();
 
         pName=JOptionPane.showInputDialog("Please enter your name: ");
+        pBal=Integer.parseInt(JOptionPane.showInputDialog("Please enter the amount you would like to deposit: "));
 
         Deck hand = new Deck();
 
@@ -22,6 +24,22 @@ public class BlackJackDriver {
 
         }
         hand.setDeck(handArray);
-        hand.display();
+
+        Player player1 = new Player(pName, hand, pBal);
+
+        player1.getHand().display();
+
+        JOptionPane.showMessageDialog(null, "Your total is " + player1.calcHandValue());
+
+        while(JOptionPane.showConfirmDialog(null, "Would you like another card?")!=JOptionPane.NO_OPTION)
+        {
+            int hitCounter=2;
+            hand.getDeck().add(hitCounter, bdeck.dealCard());
+            hitCounter++;
+            player1.getHand().display();
+            JOptionPane.showMessageDialog(null, "Your total is " + player1.calcHandValue());
+        }
+        player1.getHand().display();
+
     }
 }

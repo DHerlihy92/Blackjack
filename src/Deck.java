@@ -8,6 +8,7 @@ public class Deck {
     private ArrayList<Card> deck = new ArrayList<>();
     private int dealNo=0;
 
+
     public int getDealNo() {
         return dealNo;
     }
@@ -44,7 +45,7 @@ public class Deck {
     public static ArrayList<Card> deckBuilder() {
         ArrayList<Card> deck = new ArrayList<>();
         int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
-        String[] names = {"two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace"};
+        String[] names = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
         int y = 0, count = 0;
 
         for (int i = 0; i <= 51; i++) {
@@ -77,17 +78,19 @@ public class Deck {
                 y = 0;
             }
 
+
         }
         return deck;
     }
 
-    public static void shuffle(ArrayList<Card> deck) {
+    public void shuffle() {
         for ( int i = deck.size()-1; i > 0; i-- ) {
             int rand = (int)(Math.random()*(i+1));
             Card temp = deck.get(i);
             deck.set(i, deck.get(rand));
             deck.set(rand, temp);
         }
+        dealNo=0;
     }
 
     public Card dealCard(){

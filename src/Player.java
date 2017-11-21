@@ -1,6 +1,11 @@
+import java.util.ArrayList;
+
 public class Player {
     private String name;
     private Deck hand;
+    private int balance;
+
+    public int getBalance() { return balance; }
 
     public Deck getHand() {
         return hand;
@@ -18,11 +23,32 @@ public class Player {
         this.name = name;
     }
 
-    public Player(String name, Deck hand){
+    public void setBalance(int balance) { this.balance = balance; }
+
+    public Player(String name, Deck hand, int balance){
         setName(name);
         setHand(hand);
+        setBalance(balance);
 
     }
-    public Player(){this("Unknown", null);}
+    public Player(){this("Unknown", null, 0);}
 
+    public int calcHandValue(){
+        int total=0;
+        ArrayList<Card> totaller = hand.getDeck();
+        Card test = new Card();
+        for(int i=0; i<totaller.size(); i++){
+            test=totaller.get(i);
+            total+=test.getValue();
+        }
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", hand=" + hand +
+                '}';
+    }
 }

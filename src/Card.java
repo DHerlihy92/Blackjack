@@ -38,10 +38,6 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "name='" + name + '\'' +
-                ", suit='" + suit + '\'' +
-                ", value=" + value +
-                '}';
+        return name + " of " + suit + " value=" + value;
     }
 }
