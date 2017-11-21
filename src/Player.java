@@ -44,11 +44,18 @@ public class Player {
         return total;
     }
 
+    public int removeBet(int bet){
+        balance-=bet;
+
+        return balance;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
                 ", hand=" + hand +
+                ", balance=" + balance +
                 '}';
     }
 }

@@ -5,7 +5,7 @@ public class BlackJackDriver {
     public static void main(String[] args) {
 
         String pName;
-        int pBal;
+        int pBal, bet, balnceDuringBet;
 
         ArrayList<Card> deck = Deck.deckBuilder();
         ArrayList<Card> handArray= new ArrayList<Card>();
@@ -26,6 +26,15 @@ public class BlackJackDriver {
         hand.setDeck(handArray);
 
         Player player1 = new Player(pName, hand, pBal);
+        System.out.print(player1.getBalance());
+
+        bet=Integer.parseInt(JOptionPane.showInputDialog("Please enter how much you would like to bet: "));
+        while (player1.getBalance()<bet){
+            bet=Integer.parseInt(JOptionPane.showInputDialog("Your balance is smaller than the bet you entered, please enter a smaller bet: "));
+        }
+
+        balnceDuringBet=player1.removeBet(bet);
+        System.out.print("\n"+balnceDuringBet);
 
         player1.getHand().display();
 
@@ -39,7 +48,9 @@ public class BlackJackDriver {
             player1.getHand().display();
             JOptionPane.showMessageDialog(null, "Your total is " + player1.calcHandValue());
         }
+
         player1.getHand().display();
+
 
     }
 }
