@@ -44,10 +44,12 @@ public class Player {
         return total;
     }
 
-    public int removeBet(int bet){
+    public void removeBet(int bet){
         balance-=bet;
+    }
 
-        return balance;
+    public void calcWin(int bet){
+        balance+=bet;
     }
 
     @Override
