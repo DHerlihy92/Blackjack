@@ -2,17 +2,15 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class BlackJackDriver {
-
-
-
     public static void main(String[] args) {
 
         String pName;
-        int pBal, bet, balnceDuringBet, hitCounter=2, balanceAfterBet;
+        int pBal, bet, balnceDuringBet, pHitCounter = 2, dHitCounter = 2;
+        boolean pBust = false, dBust = false;
 
         ArrayList<Card> deck = Deck.deckBuilder();
-        ArrayList<Card> handArray= new ArrayList<Card>();
-        ArrayList<Card> dHandArray= new ArrayList<>();
+        ArrayList<Card> handArray = new ArrayList<Card>();
+        ArrayList<Card> dHandArray = new ArrayList<>();
         Deck bdeck = new Deck(deck);
         bdeck.display();
         bdeck.shuffle();
@@ -24,9 +22,9 @@ public class BlackJackDriver {
         Deck pHand = new Deck();
         Deck dHand = new Deck();
 
-        handArray=dealHand(bdeck);
+        handArray = dealHand(bdeck);
         pHand.setDeck(handArray);
-        handArray=dealHand(bdeck);
+        handArray = dealHand(bdeck);
         dHand.setDeck(handArray);
 
 
@@ -45,35 +43,58 @@ public class BlackJackDriver {
 
         player1.getHand().display();
 
-        int pHandTotal=player1.calcHandValue();
-        JOptionPane.showMessageDialog(null, "Your total is " + pHandTotal);
+        player1.calcHandValue();
+        dealer.calcHandValue();
+        JOptionPane.showMessageDialog(null, "Your total is " + player1.calcHandValue());
 
-        while(JOptionPane.showConfirmDialog(null, "Would you like another card?")!=JOptionPane.NO_OPTION && pHandTotal<22 && hitCounter!=7)
+        while(JOptionPane.showConfirmDialog(null, "Would you like another card?")!=JOptionPane.NO_OPTION && player1.calcHandValue()<22 && pHitCounter!=7)
         {
-            pHand.getDeck().add(hitCounter, bdeck.dealCard());
-            hitCounter++;
+            pHand.getDeck().add(pHitCounter, bdeck.dealCard());
+            pHitCounter++;
             player1.getHand().display();
-            JOptionPane.showMessageDialog(null, "Your total is " + pHandTotal);
+            JOptionPane.showMessageDialog(null, "Your total is " + player1.calcHandValue());
         }
         
-        if(pHandTotal>21)
+        if(player1.calcHandValue()>21)
         {
+            pBust=true;
             JOptionPane.showMessageDialog(null, "You have gone bust!");
         }
-        else if(hitCounter==7)
+        dealer.getHand().display();
+        JOptionPane.showMessageDialog(null, "Dealers total is " + dealer.calcHandValue());
+        while(dealer.calcHandValue()<17){
+            dHand.getDeck().add(dHitCounter, bdeck.dealCard());
+            dHitCounter++;
+            dealer.getHand().display();
+            JOptionPane.showMessageDialog(null, "Dealers total is " + dealer.calcHandValue());
+        }
+        if (dealer.calcHandValue()>21){
+            dBust=true;
+            JOptionPane.showMessageDialog(null, "Dealer has gone bust");
+        }
+        dealer.getHand().display();
+
+        if(player1.calcHandValue()>dealer.calcHandValue() && pBust!=true || dBust == true && pBust != true){
+            JOptionPane.showMessageDialog(null, "You have won!!");
+            bet=bet*2;
+            player1.calcWin(bet);
+            System.out.print("\n"+player1.getBalance());
+        }
+        else if(player1.calcHandValue()==dealer.calcHandValue() || pBust == true && dBust == true){
+            player1.calcWin(bet);
+            System.out.print("\n"+player1.getBalance());
+            JOptionPane.showMessageDialog(null, "You and the dealer have drawn!");
+        }
+        else if(player1.calcHandValue()<dealer.calcHandValue() && dBust != true || pBust==true){
+            JOptionPane.showMessageDialog(null, "You have lost to the dealer!");
+        }
+        else if(pHitCounter==4)
         {
             JOptionPane.showMessageDialog(null, "You have hit a 5 card trick, congrats!");
             bet=bet*3;
             player1.calcWin(bet);
             System.out.print("\n"+player1.getBalance());
         }
-        else
-        {
-
-        }
-
-        player1.getHand().display();
-
 
     }
 
