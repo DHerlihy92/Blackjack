@@ -44,6 +44,10 @@ public class Player {
         return total;
     }
 
+    public void setHandNull(){
+        this.hand = null;
+    }
+
     public void removeBet(int bet){
         balance-=bet;
     }
