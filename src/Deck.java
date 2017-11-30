@@ -50,27 +50,32 @@ public class Deck {
 
         for (int i = 0; i <= 51; i++) {
 
-            deck.add(i, new Card());
+            //deck.add(i, new Card());
 
             if (count < 13) {
-                deck.get(i).setSuit("Hearts");
-                deck.get(i).setValue(values[y]);
-                deck.get(i).setName(names[y]);
+                //deck.get(i).setSuit("Hearts");
+                //deck.get(i).setValue(values[y]);
+                //deck.get(i).setName(names[y]);
+                //deck.get(i).setImage("src//Cards//card"+(i)+".png");
+                deck.add(i, new Card(names[y], "Hearts", values[y], new ImageIcon("src//Cards//card"+i+".png")));
             }
             if (count >= 13 && count < 26) {
-                deck.get(i).setSuit("Diamonds");
+                /*deck.get(i).setSuit("Diamonds");
                 deck.get(i).setValue(values[y]);
-                deck.get(i).setName(names[y]);
+                deck.get(i).setName(names[y]);*/
+                deck.add(i, new Card(names[y], "Diamonds", values[y], new ImageIcon("src//Cards//card"+i+".png")));
             }
             if (count >= 26 && count < 39) {
-                deck.get(i).setSuit("Clubs");
+                /*deck.get(i).setSuit("Clubs");
                 deck.get(i).setValue(values[y]);
-                deck.get(i).setName(names[y]);
+                deck.get(i).setName(names[y]);*/
+                deck.add(i, new Card(names[y], "Clubs", values[y], new ImageIcon("src//Cards//card"+i+".png")));
             }
             if (count >= 39 && count <= 51) {
-                deck.get(i).setSuit("Spades");
+                /*deck.get(i).setSuit("Spades");
                 deck.get(i).setValue(values[y]);
-                deck.get(i).setName(names[y]);
+                deck.get(i).setName(names[y]);*/
+                deck.add(i, new Card(names[y], "Spades", values[y], new ImageIcon("src//Cards//card"+i+".png")));
             }
             count++;
             y++;

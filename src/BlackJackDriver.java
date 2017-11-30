@@ -7,7 +7,6 @@ public class BlackJackDriver {
         String pName;
         int pBal, endBal, bet, pHitCounter = 2, dHitCounter = 2;
         boolean pBust = false, dBust = false;
-
         ArrayList<Card> deck = Deck.deckBuilder();
         ArrayList<Card> handArray = new ArrayList<Card>(5);
         ArrayList<Card> dHandArray = new ArrayList<>(5);
@@ -38,7 +37,7 @@ public class BlackJackDriver {
             dBust=false;
             bdeck.shuffle();
             bdeck.display();
-
+            new BlackjackGUI();
             handArray = dealHand(bdeck);
             pHand.setDeck(handArray);
             dHandArray = dealHand(bdeck);

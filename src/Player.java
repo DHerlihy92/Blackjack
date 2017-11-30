@@ -36,9 +36,8 @@ public class Player {
     public int calcHandValue(){
         int total=0;
         ArrayList<Card> totaller = hand.getDeck();
-        Card test = new Card();
         for(int i=0; i<totaller.size(); i++){
-            test=totaller.get(i);
+            Card test=totaller.get(i);
             total+=test.getValue();
         }
         return total;
