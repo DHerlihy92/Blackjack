@@ -13,12 +13,17 @@ public class BlackjackGUI extends JFrame implements ActionListener{
     private JButton hit, stay, newGame, exitGame, exitGame1, newUser, howToPlay;
     private JLabel dealerCard1, dealerCard2, playerCard1, playerCard2;
     private ImageIcon back;
-
+    private ArrayList<Card> handArray, dHandArray, deck;
+    private Deck bdeck, pHand, dHand;
 
     public BlackjackGUI(){
 
-        Player player;
-        Player dealer;
+
+        handArray = new ArrayList<Card>(5);
+        dHandArray = new ArrayList<Card>(5);
+        deck = Deck.deckBuilder();
+        bdeck = new Deck(deck);
+
         bFrame.setLocation(100,100);
         bFrame.setSize(800, 900);
         bFrame.setLayout( new GridLayout(3,1));
@@ -140,10 +145,16 @@ public class BlackjackGUI extends JFrame implements ActionListener{
         }
         if(e.getSource()==newUser){
             blackjackAddUser.setVisible(false);
+
             blackjackGameMenu.setVisible(true);
-            Player p1= new Player();
-
-
+            handArray = dealHand(bdeck);
+            dHandArray = dealHand(bdeck);
+            pHand.setDeck(handArray);
+            dHand.setDeck(dHandArray);
+            Card p1 = handArray.get(0);
+            Card p2 = handArray.get(1);
+            playerCard1.setIcon(p1.getImage());
+            playerCard2.setIcon(p2.getImage());
 
         }
         if(e.getSource()==hit){
