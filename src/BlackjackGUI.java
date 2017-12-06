@@ -33,7 +33,7 @@ public class BlackjackGUI extends JFrame implements ActionListener{
         //JPanel for Dealer
         blackjackDealer = new JPanel();
         blackjackDealer.setSize(800,300);
-        blackjackDealer.setBackground(Color.red);
+        blackjackDealer.setBackground(Color.green);
         blackjackDealer.setLayout(new FlowLayout());
         dealerCard1 = new JLabel();
         dealerCard1.setIcon(back);
@@ -47,7 +47,7 @@ public class BlackjackGUI extends JFrame implements ActionListener{
         //JPanel for Dealer
         blackjackPlayer = new JPanel();
         blackjackPlayer.setSize(800,300);
-        blackjackPlayer.setBackground(Color.blue);
+        blackjackPlayer.setBackground(Color.green);
         blackjackPlayer.setLayout(new FlowLayout());
         playerCard1 = new JLabel();
         playerCard1.setIcon(back);
@@ -145,7 +145,7 @@ public class BlackjackGUI extends JFrame implements ActionListener{
         }
         if(e.getSource()==newUser){
             blackjackAddUser.setVisible(false);
-
+            addPlayer();
             blackjackGameMenu.setVisible(true);
             handArray = dealHand(bdeck);
             dHandArray = dealHand(bdeck);

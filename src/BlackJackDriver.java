@@ -37,7 +37,7 @@ public class BlackJackDriver {
             dBust=false;
             bdeck.shuffle();
             bdeck.display();
-            new BlackjackGUI();
+           // new BlackjackGUI();
             handArray = dealHand(bdeck);
             pHand.setDeck(handArray);
             dHandArray = dealHand(bdeck);
